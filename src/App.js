@@ -5,20 +5,19 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Employee from './components/Employee';
 // import Counter from './components/Counter';
-import UserList from './components/UserList';
+// import UserList from './components/UserList';
 import CounterRedux from './components/CounterRedux';
+import UserListRedux from './components/UserListRedux';
 
 function App() {
   return (
     <React.Fragment>
-      {/* <h2>App Component</h2> */}
       <NavBar />
-
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/employees'} element={<Employee />} />
         <Route path={'/counter'} element={<CounterRedux />} />
-        <Route path={'/users'} element={<UserList />} />
+        <Route path={'/users'} element={<UserListRedux />} />
       </Routes>
     </React.Fragment>      
   );

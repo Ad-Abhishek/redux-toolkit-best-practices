@@ -1,38 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../redux/features/user-list.feature';
 
-let UserList = () => {
-    let [state , setState] = useState({
-        loading : false,
-        users : [],
-        errorMessage : ''
-    });
+let UserListRedux = () => {
 
-    const fetchUsers = async () => {
-        try {
-            setState({...state,loading:true})
-            let dataUrl = ` `;
-            let response = await axios.get(dataUrl);
-            setState({
-                ...state,
-                users: response.data,
-                loading: false
-            });
-        }
-        catch (error){
-            setState({
-                ...state,
-                errorMessage: error,
-                loading: false
-            });
-        }
-    }
+    let dispatch = useDispatch();
+    
+    // Get data fromRedux store
+    let userState = useSelector((store) => {
+        return store["users"];
+    })
 
     useEffect(() => {
-        fetchUsers();
-    },[])
+        dispatch(getUsers());
+    },[dispatch])
 
-    let {loading , errorMessage , users} = state;
+    let {loading , errorMessage , users} = userState;
 
     return (
         <React.Fragment>
@@ -49,7 +32,7 @@ let UserList = () => {
                             loading && <h2 className="fw-bold">...Loading</h2>
                         }
                         {
-                            !loading && errorMessage.length > 0 && <h3 className="text-danger">{errorMessage}</h3>
+                            !loading && errorMessage && <h3 className="text-danger">{errorMessage}</h3>
                         }
                         {
                             !loading && users.length > 0 &&
@@ -88,4 +71,4 @@ let UserList = () => {
         </React.Fragment>
     )
 };
-export default UserList;
+export default UserListRedux;
