@@ -4,8 +4,9 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import Employee from './components/Employee';
-import Counter from './components/Counter';
+// import Counter from './components/Counter';
 import UserList from './components/UserList';
+import CounterRedux from './components/CounterRedux';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/employees'} element={<Employee />} />
-        <Route path={'/counter'} element={<Counter />} />
+        <Route path={'/counter'} element={<CounterRedux />} />
         <Route path={'/users'} element={<UserList />} />
       </Routes>
     </React.Fragment>      
